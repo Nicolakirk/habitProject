@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { StyleSheet, Text, View , ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View , ScrollView, TouchableOpacity , swipe } from 'react-native';
 import { fetchHabitsbyUser } from "../utils/api";
-import {Swipeable, SwipeableButton }from 'react-native-swipeable';
+import { SwipeListView } from 'react-native-swipe-list-view';
 
 export default function HabitView ({ habit, pressHandler}) {
 
@@ -10,22 +10,25 @@ export default function HabitView ({ habit, pressHandler}) {
     pressHandler(habit.habit_id);
   };
 
+
+
       
 
    return(
+    
     <View key={habit.habit_id} style={styles.list} >
-      <Swipeable rightButtons={[<SwipeableButton onPress={handleDelete} />]}>
-           
+            <TouchableOpacity onPress={handleDelete} >
             <Text style={styles.item} > Habit -{ habit.name} </Text>
             <Text  style={styles.item}>Motivate - {habit.motivational_message}</Text>
             <Text style={styles.item}>Frequency - {habit.frequency}</Text>
-            </Swipeable>
+            </TouchableOpacity>
           </View>
    )
 
 
 
 }
+
 
 
 
@@ -47,3 +50,4 @@ list: {
  
 
 });
+

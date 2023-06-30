@@ -5,7 +5,7 @@ import { deleteHabit, fetchHabitsbyUser, postHabit } from './utils/api';
 import Header from './components/Header';
 import HabitView from './components/HabitView';
 import AddHabit from './components/AddHabit';
-import Swipeable from 'react-native-swipeable';
+import { v4 as uuidv4 } from 'react-native-uuid';
 
 export default function App() {
  
@@ -45,12 +45,14 @@ const pressHandler = (key) => {
     });
 };
 
+
 const submitHandler = (nameList) => {
   const inputHabit = {
     name: nameList,
     body: bodyList,
     frequency: frequencyList,
     motivational_message: motivateList,
+    key: keyList,
     habit_id: keyList,
   };
 
@@ -65,7 +67,7 @@ const submitHandler = (nameList) => {
           body: bodyList,
           frequency: frequencyList,
           motivational_message: motivateList,
-          habit_id: keyList,
+          key: keyList,
         },
         ...prevHabits,
       ];
@@ -79,7 +81,7 @@ const submitHandler = (nameList) => {
         console.log('Error adding habit:', error);
         // Remove the habit from the UI
         setHabitList((prevHabits) => {
-          return prevHabits.filter((habit) => habit.habit_id !== keyList);
+          return prevHabits.filter((habit) => habit.key !== keyList);
         });
       });
   } else {
@@ -89,7 +91,6 @@ const submitHandler = (nameList) => {
     });
   }
 };
-
 
 
 
