@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert } from 'react-native';
+import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import HomePage from './HomePage';
+
 
 export default function LoginScreen({ navigation }) {
+ 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
     // Implement your login logic here
+  
+console.log(navigation)
     // Check the entered username and password
-    if (username === 'jessJelly' && password === 'password') {
+    console.log(username)
+    console.log(password)
+    if (username === 'jessjelly' && password === 'password') {
       // User is authenticated
-      setUsername('');
-      setPassword('');
-      navigation.navigate('Home');
+      // setUsername('');
+      // setPassword('');
+  navigation.navigate('Home');
+      
     } else {
       Alert.alert('Invalid credentials', 'Please enter valid username and password');
     }
@@ -25,16 +33,18 @@ export default function LoginScreen({ navigation }) {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
+      style={styles.input}
         placeholder="Username"
         value={username}
-        onChangeText={setUsername}
+        onChangeText={(username)=> setUsername(username)}
       />
       <TextInput
+      style={styles.input}
         placeholder="Password"
         value={password}
-        onChangeText={setPassword}
+        onChangeText={(password)=> setPassword(password)}
         secureTextEntry
       />
       <Button title="Login" onPress={handleLogin} />
@@ -42,3 +52,20 @@ export default function LoginScreen({ navigation }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+   alignItems:'center',
+    marginTop:26,
+    backgroundColor: '#ecf0f1',
+  },
+  input: {
+    width: 200,
+    height: 44,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'black',
+    marginBottom: 10,
+  },
+});

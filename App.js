@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'react-native-uuid';
 import Sandbox from './components/Sandbox';
 import HomePage from './screens/HomePage';
 import Navigator from './routes/Homestack';
+import AppNavigator from './routes/Homestack';
 
 
 export default function App() {
