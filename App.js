@@ -98,8 +98,6 @@ const submitHandler = (nameList) => {
 
 
 
-
-
   
   return (
 <Navigator/>

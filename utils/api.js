@@ -47,16 +47,16 @@ export const fetchTopics = () =>{
 
     export const fetchhabitById= (habit_id)=>{
         console.log(habit_id)
-        return habitApi.get(`/owner/habit/${habit_id}`).then((response)=>{
-  
+        return habitApi.get(`/habit/${habit_id}`).then((response)=>{
+  console.log(response.data.habits)
             return response.data.habits
         })
     }
 
 
-    export const patchHabit = (habit_id) =>{
-        console.log("patch", habit_id)
-        return habitApi.patch(`/habits/${habit_id}`, { amount_days: 1 })
+    export const patchHabit = (habit_id, days) =>{
+        console.log("patch", days)
+        return habitApi.patch(`/habits/${habit_id}`, { amount_days: days })
         
         
         };

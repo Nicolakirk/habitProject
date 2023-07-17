@@ -6,7 +6,7 @@ import { deleteHabit, fetchHabitsbyUser, postHabit } from '../utils/api';
 import HabitForm from './HabitForm';
 
 export default function HomePage ({ 
-    navigation, values }) {
+    navigation, values , route}) {
         
         const [frequencyList, setFrequency] = useState('Every day');
        
@@ -73,11 +73,34 @@ export default function HomePage ({
         // }
         setModalOpen(false);
       };
+
+      const handleDelete = (key) => {
+        // Delete the habit from the API
+        console.log("hi")
+
+        deleteHabit(key)
+      
+          .then(() => {
+         
+            console.log('Habit deleted successfully from the API');
+      
+            // Remove the habit from the local state
+            setHabitList((currentHabits) => {
+              return currentHabits.filter((habit) => habit.habit_id !== key);
+            });
+            navigation.navigate("Home")
+          })
+        
+          .catch((err) => {
+            console.log('Error deleting habit:', err);
+          });
+      };
       
 
     return(
         <View style = {globalStyles.container}>
          <Modal visible={modalOpen} animationType = "slide">
+
          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
      
       <View style={{ ...styles.modalContent, ...styles.modalClose}}>
@@ -87,7 +110,7 @@ export default function HomePage ({
         style={styles.modalToggle}
         onPress={()=>setModalOpen(false)}
         />
-        <HabitForm submitHandler={submitHandler}/>
+        <HabitForm submitHandler={submitHandler} />
         </View>
         </TouchableWithoutFeedback>
      </Modal>
@@ -109,13 +132,22 @@ export default function HomePage ({
       
       {habitList.map((habit)=>{
         return (
-            <TouchableOpacity onPress={()=> navigation.navigate('Habit', habit)}>
+            <TouchableOpacity onPress={()=> navigation.navigate('Habit', 
+            { habit,handleDelete:handleDelete
+            }) 
+             
+             
+               }>
             <View key={habit.habit_id} style={styles.list} >
             
           <View >
           <Text  style={styles.text}>Habit -{ habit.name} </Text>
-          <Text  style={styles.text}>Motivate - {habit.motivational_message}</Text>
-          <Text style={styles.text} >Frequency - {habit.frequency}</Text>
+
+          {habit.amount_days  === 90 && (
+        <MaterialIcons name="done" size={24} color="coral" />
+      )}
+
+          
           </View>
 </View>
 </TouchableOpacity>
@@ -155,13 +187,14 @@ const styles = StyleSheet.create({
    
    list: {
     marginTop:16,
-  alignItems:'center',
+    justifyContent:'flex-start',
+  alignItems:'centre',
      borderColor:'grey',
      padding:20,
      borderWidth:1,
      borderRadius:20,
      borderStyle: "dashed",
-     flexDirection: 'column',
+     flexDirection: 'row',
      
      
   
