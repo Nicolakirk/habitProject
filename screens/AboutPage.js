@@ -7,7 +7,8 @@ export default function AboutPage () {
     return(
         <View style = {globalStyles.container}>
         <Text> About 
-        </Text></View>
+        </Text>
+        </View>
     )
 }
 

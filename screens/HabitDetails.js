@@ -6,16 +6,18 @@ import Checkbox from 'expo-checkbox';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function HabitDetails({ navigation, route }) {
-  const newHabit = navigation.getParam('habit');
-  const handleDelete = navigation.getParam('handleDelete', () => {});
+  
+  const {habit, handleDelete } = route.params;
+  console.log("inhad", habit)
+  // const handleDelete = route.params('handleDelete', () => {});
 
   const [percentage, setPercentage] = useState(0);
   const [addDay, setAddDay] = useState(0);
   const [err, setErr] = useState('');
-  const id = newHabit.habit_id;
+  const id = habit.habit_id;
   const [habitsById, setHabitsById] = useState({});
   const [isChecked, setIsChecked] = useState('');
-  const key = newHabit.habit_id;
+  const key = habit.habit_id;
   const [message, setMessage] = useState('');
 
   useEffect(() => {

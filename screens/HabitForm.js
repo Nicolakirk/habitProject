@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet , Text, View , Button, TextInput } from 'react-native';
+import { StyleSheet , Text, View , Button, TextInput, Label } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -32,9 +32,11 @@ onSubmit ={(values, actions) => {
 >
     {(props) =>(
        <View>
+        
         <TextInput
          style={globalStyles.input}
-        placeholder="Habit Name"
+         
+        placeholder="Read a book, drink more water etc."
         onChangeText={props.handleChange('name')}
         value={props.values.name}
         onBlur={props.handleBlur('name')}

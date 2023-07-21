@@ -5,21 +5,39 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { deleteHabit, fetchHabitsbyUser, postHabit } from '../utils/api';
 import HabitForm from './HabitForm';
 
+
 export default function HomePage ({ 
-    navigation, values , route}) {
-        
+    navigation,  route, userLoggedIn }) {
+      const { values } = route.params;
+// const newUser = navigation.getParam("values")
+
+    //  const updatedUser= values.username
+     console.log("in",values)
         const [frequencyList, setFrequency] = useState('Every day');
        
       const [ habitList, setHabitList ]= useState ([]);
-      const [owner, setOwner ]= useState("jessjelly");
+      const [owner, setOwner ]= useState("");
       const[keyList, setkeyList]=useState("")
-      const[modalOpen, setModalOpen]= useState(false)
+      const[modalOpen, setModalOpen]= useState(false);
 
       useEffect(() => {
+     setOwner(values.username)
         fetchHabitsbyUser(owner)
           .then((habits) => {
+         
+            if(habits.length < 1){
+Alert.alert("Welcome to Habits app, start by setting a new habit ", undefined,[
+  {text:"Not yet",
+  style:'cancel',
+},{
+  text:"+ Habit",
+  onPress:()=> setModalOpen(true)
+}
+])
+            }
+            else{
             setHabitList(habits);
-           
+            }
           })
           .catch((error) => {
             console.error('Error fetching habits:', error);
@@ -88,7 +106,7 @@ export default function HomePage ({
             setHabitList((currentHabits) => {
               return currentHabits.filter((habit) => habit.habit_id !== key);
             });
-            navigation.navigate("Home")
+            navigation.navigate("Home",{ values } )
           })
         
           .catch((err) => {
@@ -133,7 +151,7 @@ export default function HomePage ({
       {habitList.map((habit)=>{
         return (
             <TouchableOpacity onPress={()=> navigation.navigate('Habit', 
-            { habit,handleDelete:handleDelete
+            { habit, handleDelete  
             }) 
              
              
@@ -177,6 +195,7 @@ const styles = StyleSheet.create({
    content:{
     flex:1,
   padding:5,
+  width:'100%',
   
   margin:10,
    },

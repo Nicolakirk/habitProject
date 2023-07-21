@@ -22,11 +22,13 @@ const styles = StyleSheet.create ({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center',
+       
     },
     headerText: {
         fontWeight: 'bold',
         fontSize: 20,
-        color:'#333',
+        
+        color:'white',
         letterSpacing: 1,
     }
 })

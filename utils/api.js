@@ -18,6 +18,15 @@ return habitApi.get(`/owner/habits/${owner}`).then((response)=>{
   
 };
 
+export const fetchUserbyUsers = (username)=>{
+
+    return habitApi.get(`/users/${username}`).then((response)=>{
+    
+            return response.data.users
+        })
+      
+    };
+
 export const fetchTopics = () =>{
    
     return newsApi.get('/topics').then((response)=>{
@@ -26,12 +35,29 @@ export const fetchTopics = () =>{
     })
     }
 
+    export const fetchUsers = () =>{
+   
+        return newsApi.get('/users').then((response)=>{
+           
+        return response.data.users
+        })
+        }
+
     export const postHabit = (owner, habitBody) =>{
        
         
         return habitApi.post(`/${owner}/habits`, habitBody).then((response)=>{
            
             return response.data.habits
+        })
+    };
+
+    export const postUser = (inputBody) =>{
+       
+        
+        return habitApi.post(`/user`, inputBody).then((response)=>{
+           
+            return response.data.users
         })
     };
 

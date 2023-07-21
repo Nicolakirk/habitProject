@@ -1,52 +1,55 @@
-import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer } from 'react-navigation';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
+
 
 import HomePage from '../screens/HomePage';
-import HabitDetails from '../screens/HabitDetails';
-import Header from '../shared/Header';
 import LoginScreen from '../screens/LoginScreen';
+import HabitDetails from '../screens/HabitDetails';
 
-const screens = {
-    Login: {
-        screen: LoginScreen,
-        navigationOptions: {
-          title: 'Log-in',
-        },
-      },
-  Home: {
-    screen: HomePage,
-    navigationOptions: {
-      headerTitle: () => <Header />,
-    },
-  },
-  Habit: {
-    screen: HabitDetails,
-    navigationOptions: {
-      title: 'Habit Details',
-    },
-  },
- 
+const Stack = createNativeStackNavigator();
+
+const HomeStack = () => {
+  return (
+   
+      <Stack.Navigator
+      initialRouteName ="Login"
+        // screenOptions={{
+        //   headerStyle: {
+        //     backgroundColor: 'green',
+        //     height: 100,
+        //   },
+        // }}
+      >
+         <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          // options={{
+          //   title: 'Login', // Set the title for the screen
+          // }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomePage}
+          options={{
+            title: 'Home Page', // Set the title for the screen
+          }}
+        />
+       
+       
+         <Stack.Screen
+          name="Habit"
+          component={HabitDetails}
+          options={{
+            title: 'Habit Details', // Set the title for the screen
+          }}
+        />
+      </Stack.Navigator>
+  
+  );
 };
 
-const HomeStack = createStackNavigator(screens, {
-  defaultNavigationOptions: {
-    headerTintColor: '#444',
-    headerStyle: { backgroundColor: '#eee', height: 100 },
-  },
-});
-
-const userAuthenticated = false; // Change this based on your authentication logic
-
-let Navigator= createAppContainer(HomeStack)
-
-// if (userAuthenticated) {
-//   // User is authenticated, show the home page
-//   Navigator = createAppContainer(HomeStack);
-// } else {
-//   // User is not authenticated, show the login screen
-//   const LoginStack = createStackNavigator({ Login: LoginScreen });
-//   Navigator = createAppContainer(LoginStack);
-
-
-export default Navigator;
+export default HomeStack;
 

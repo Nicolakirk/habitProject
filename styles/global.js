@@ -7,9 +7,9 @@ export const globalStyles = StyleSheet.create({
         flex:1,
     },
     titleText:{
-       
-        fontSize:18,
-        color:'#333'
+      
+        fontSize:20,
+        color:'coral'
     },
     paragraog:{
         marginvertical:8,
@@ -19,14 +19,14 @@ export const globalStyles = StyleSheet.create({
         borderWidth:1,
         borderColor:'#333',
         padding:16,
-        fontSize:18,
+        fontSize:20,
         borderRadius:20,
-        color:'pink',
+        color:'grey',
 marginTop:10,
 
     },
     errorText:{
-        color:'coral',
+        color:'Green',
         fontWeight:'bold',
         marginBottom:10,
         marginTop:6,
