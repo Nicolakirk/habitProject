@@ -6,9 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 export default function Header () {
     return (
         <View style={styles.header}>
-<Text style={styles.headerText}>
-Habit
-</Text>
+
         </View>
     )
 
@@ -28,7 +26,7 @@ const styles = StyleSheet.create ({
         fontWeight: 'bold',
         fontSize: 20,
         
-        color:'white',
+        color:'green',
         letterSpacing: 1,
     }
 })

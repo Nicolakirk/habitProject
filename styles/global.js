@@ -17,11 +17,12 @@ export const globalStyles = StyleSheet.create({
     },
     input:{
         borderWidth:1,
-        borderColor:'#333',
+        borderColor:'grey',
         padding:16,
         fontSize:20,
         borderRadius:20,
         color:'grey',
+        width:250,
 marginTop:10,
 
     },

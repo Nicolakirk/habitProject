@@ -151,6 +151,7 @@ onPress: setModalOpen(false),
       <MaterialIcons 
         name='close'
         size={26}
+       
         style={styles.modalToggle}
         onPress={()=>setModalOpen(false)}
         />
@@ -176,15 +177,16 @@ const styles = StyleSheet.create({
     flex: 1,
    alignItems:'center',
     marginTop:26,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: 'white',
   },
   input: {
-    width: 200,
+    width: 400,
     height: 44,
     padding: 10,
     borderWidth: 1,
     borderColor: 'black',
     marginBottom: 10,
+    backgroundColor:'green'
   },
   modalContent:{
     flex:1,
@@ -195,7 +197,7 @@ const styles = StyleSheet.create({
     marginBottom:10,
     marginRight:16,
     borderWidth:1,
-    borderColor:'#f2f2f2',
+    borderColor:'white',
     padding:20,
     borderRadius:10,
     alignSelf:'flex-start'

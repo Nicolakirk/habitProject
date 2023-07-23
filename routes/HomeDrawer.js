@@ -1,4 +1,4 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerItem, DrawerContentComponentProps} from '@react-navigation/drawer';
 
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,36 +9,47 @@ import LoginScreen from '../screens/LoginScreen';
 import AboutPage from '../screens/AboutPage';
 import HomeStack from './Homestack';
 import AboutStack from './AboutStack';
+import HomePage from '../screens/HomePage';
 
 const Drawer = createDrawerNavigator();
+
+
+
 
 const HomeDrawer = () => {
   return (
    
       <Drawer.Navigator
       initialRouteName="Login"
+      
+      screenOptions={{
+        headerTintColor:'black',
+        headerStyle: {
+          backgroundColor: 'white',
+          height: 100,
+        
+     
+        },
        
+       
+      }}
+      
       >
-        <Drawer.Screen
-          name="Login"
-          component={LoginScreen}
-        //   options={{
-        //     title: 'Login', // Set the title for the screen
-        //   }}
-        />
+        
          <Drawer.Screen
-          name="HomeStack"
+          name="Get started "
           component={HomeStack}
-        //   options={{
-        //     title: 'About Page', // Set the title for the screen
-        //   }}
+          options={{
+            drawerActiveTintColor:"green",
+          }}
         />
         <Drawer.Screen
-          name="AboutStack"
+          name="How to use"
           component={AboutStack}
-        //   options={{
-        //     title: 'About Page', // Set the title for the screen
-        //   }}
+          options={{
+            
+            drawerActiveTintColor:"green", // Set the title for the screen
+          }}
         />
       </Drawer.Navigator>
   

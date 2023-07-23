@@ -16,35 +16,25 @@ const HomeStack = () => {
    
       <Stack.Navigator
       initialRouteName ="Login"
-        // screenOptions={{
-        //   headerStyle: {
-        //     backgroundColor: 'green',
-        //     height: 100,
-        //   },
-        // }}
+       
+      
       >
          <Stack.Screen
           name="Login"
           component={LoginScreen}
-          // options={{
-          //   title: 'Login', // Set the title for the screen
-          // }}
+          
         />
         <Stack.Screen
           name="Home"
           component={HomePage}
-          options={{
-            title: 'Home Page', // Set the title for the screen
-          }}
+          
         />
        
        
          <Stack.Screen
           name="Habit"
           component={HabitDetails}
-          options={{
-            title: 'Habit Details', // Set the title for the screen
-          }}
+          
         />
       </Stack.Navigator>
   

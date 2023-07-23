@@ -7,7 +7,7 @@ import * as SecureStore from 'expo-secure-store';
 import { postUser } from '../utils/api';
 
 
-export default function CreateLogIn ({handleCreateAccount}) {
+export default function CreateLogIn ({ handleCreateAccount}) {
 
 
     const [newUserName, setNewUserName] = useState('');

@@ -28,6 +28,7 @@ export default function HomePage ({
             if(habits.length < 1){
 Alert.alert("Welcome to Habits app, start by setting a new habit ", undefined,[
   {text:"Not yet",
+ 
   style:'cancel',
 },{
   text:"+ Habit",
@@ -186,7 +187,7 @@ Alert.alert("Welcome to Habits app, start by setting a new habit ", undefined,[
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: 'white',
       paddingTop: 40,
      alignItems: 'center',
      justifyContent: 'center',
