@@ -15,16 +15,16 @@ const AboutStack = () => {
   return (
    
       <Stack.Navigator
-      initialRouteName="How"
+      initialRouteName="How to use"
         screenOptions={{
           headerStyle: {
-            backgroundColor: 'green',
+          
             height: 100,
           },
         }}
       >
         <Stack.Screen
-          name="How to use Habit Stack"
+          name="habit Stack"
           component={AboutPage}
          
         />

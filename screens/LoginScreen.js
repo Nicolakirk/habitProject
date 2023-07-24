@@ -130,9 +130,9 @@ onPress: setModalOpen(false),
        
     
       { !isLoggedIn ?
-      ( <Button title= "Login" color="coral"
+      ( <Button title= "Login" color="green"
         onPress = {props.handleSubmit} />):
-        (<Button title= "Logout" color="coral"
+        (<Button title= "Logout" color="green"
         onPress = {handleLogout} />)}
       
      </View>
@@ -161,7 +161,7 @@ onPress: setModalOpen(false),
      </Modal>
 
      
-     <Button title="Create Account"color="coral" onPress={()=>setModalOpen(true)} />
+     <Button title="Create Account"color="green" onPress={()=>setModalOpen(true)} />
 <View>
 
 

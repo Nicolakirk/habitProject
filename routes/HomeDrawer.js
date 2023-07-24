@@ -37,10 +37,10 @@ const HomeDrawer = () => {
       >
         
          <Drawer.Screen
-          name="Get started "
+          name="Habit Stack "
           component={HomeStack}
           options={{
-            drawerActiveTintColor:"green",
+            drawerActiveBackgroundColor:"yellow",
           }}
         />
         <Drawer.Screen
@@ -48,7 +48,7 @@ const HomeDrawer = () => {
           component={AboutStack}
           options={{
             
-            drawerActiveTintColor:"green", // Set the title for the screen
+            drawerActiveBackgroundColor:"yellow", // Set the title for the screen
           }}
         />
       </Drawer.Navigator>

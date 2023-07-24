@@ -144,24 +144,24 @@ export default function HabitDetails({ navigation, route }) {
   return (
     <View style={styles.container}>
       <View style={styles.list}>
-        <Text>{habitsById[0]?.body}</Text>
-        <Text>How often: {habitsById[0]?.frequency}</Text>
-        <Text>{habitsById[0]?.motivational_message}</Text>
-        <Text>Amount of days: {habitsById[0]?.amount_days + addDay}</Text>
+        <Text style={styles.listTitle}>Name:{habitsById[0]?.name}</Text>
+        <Text style={styles.listText}>Frequency: {habitsById[0]?.frequency}</Text>
+        <Text style={styles.listText}>Motivation:{habitsById[0]?.motivational_message}</Text>
+        <Text style={styles.listText}>Amount of habit days: {habitsById[0]?.amount_days + addDay}</Text>
       </View>
       <View>
-        <Text>{message}</Text>
+        <Text style ={globalStyles.titleText}>{message}</Text>
       </View>
       <View style={styles.circleContainer}>
         <Text style={styles.percentageText}>{percentage}%</Text>
       </View>
 
       <View style={styles.addHabitContainer}>
-        <Button title="+ Habit" onPress={handleAdd} />
-        <Button title="- Habit" onPress={handleSubtract} />
+        <Button title="+ Habit" color="green" onPress={handleAdd} />
+        <Button title="- Habit" color="green" onPress={handleSubtract} />
       </View>
 
-      <Button title="Delete" onPress={onPressDelete} />
+      <Button title="Delete Habit" color="green"  onPress={onPressDelete} />
     </View>
   );
 }
@@ -177,11 +177,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     borderColor: 'grey',
     padding: 20,
-    borderWidth: 1,
+   
+   
     borderRadius: 20,
     borderStyle: 'dashed',
     flexDirection: 'column',
     marginTop: 20,
+    width:300,
   },
   circleContainer: {
     marginTop: 16,
@@ -201,4 +203,11 @@ const styles = StyleSheet.create({
   addHabitContainer: {
     flexDirection: 'row',
   },
+  listTitle:{
+    fontWeight:'bold',
+    padding:10,
+  },
+  listText:{
+   padding:10,
+  }
 });

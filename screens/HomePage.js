@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: 'white',
-      paddingTop: 40,
+      
      alignItems: 'center',
      justifyContent: 'center',
     },
@@ -200,6 +200,11 @@ const styles = StyleSheet.create({
   
   margin:10,
    },
+   text:{
+    fontSize:18,
+    fontWeight:"bold",
+      
+   },
   
   
   
@@ -208,9 +213,9 @@ const styles = StyleSheet.create({
    list: {
     marginTop:16,
     justifyContent:'flex-start',
-  alignItems:'centre',
+
      borderColor:'grey',
-     padding:20,
+     padding:10,
      borderWidth:1,
      borderRadius:20,
      borderStyle: "dashed",
@@ -223,7 +228,7 @@ const styles = StyleSheet.create({
     },
    modalContent:{
     flex:1,
-    padding:20,
+    padding:10,
     marginTop:40,
    },
    modalToggle:{

@@ -4,7 +4,7 @@ import { globalStyles } from '../styles/global';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import * as SecureStore from 'expo-secure-store';
-import { postUser } from '../utils/api';
+import { fetchUserbyUsers, postUser } from '../utils/api';
 
 
 export default function CreateLogIn ({ handleCreateAccount}) {
@@ -14,6 +14,7 @@ export default function CreateLogIn ({ handleCreateAccount}) {
     const [newName, setNewName] =useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const[noUserExists, setNoUserExists]=useState(false)
 
 
 
@@ -23,26 +24,31 @@ async function save(newUserName, newPassword) {
 };
 
 const handlePassword =()=>{
-  console.log(newPassword)
-  console.log(confirmPassword)
-  console.log(newUserName)
-  console.log(newName)
+  
   const inputBody = {
     username: newUserName,
     name:newName
   }
+  fetchUserbyUsers(newUserName).then((user)=>{
+if ( !user){
+  setNoUserExists(true)
+} else{
+  Alert.alert("user already exists")
+}
+  })
 
-  if (newPassword === confirmPassword){
+  if (newPassword === confirmPassword  && noUserExists){
     save(newUserName,newPassword).then(()=>{
     console.log("account created")
     })
-}handleCreateAccount(newUserName)
+    handleCreateAccount(newUserName)
 postUser(inputBody).then(()=>{
 console.log("new user added")
 })
 .catch((err) => {
   console.log('Error adding user:', err);
 })
+}
 };
     
 

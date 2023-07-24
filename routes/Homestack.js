@@ -15,8 +15,13 @@ const HomeStack = () => {
   return (
    
       <Stack.Navigator
-      initialRouteName ="Login"
-       
+      initialRouteName ="Login to your Habits "
+      screenOptions={{
+        headerStyle: {
+        
+          height: 50,
+        },
+      }}
       
       >
          <Stack.Screen
@@ -27,7 +32,7 @@ const HomeStack = () => {
         <Stack.Screen
           name="Home"
           component={HomePage}
-          
+         
         />
        
        

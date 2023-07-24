@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet , Text, View , Button, TextInput, Label } from 'react-native';
+import { StyleSheet , Text, View , Button, TextInput, Label, Picker } from 'react-native';
 import { globalStyles } from '../styles/global';
-import { Formik } from 'formik';
+import {Field,  Formik, FormikProps } from 'formik';
 import * as yup from 'yup';
 
 
@@ -10,7 +10,8 @@ const reviewSchema = yup.object({
   .required()
   .min(4),
   body:yup.string(),
-  motivational_message: yup.string()
+  motivational_message: yup.string(),
+  frequency: yup.string().required(),
 })
 
 export default function HabitForm  ({ submitHandler }) {
@@ -31,8 +32,10 @@ onSubmit ={(values, actions) => {
 }}
 >
     {(props) =>(
-       <View>
-        
+       <View style={globalStyles.container}>
+
+        <Text  style={globalStyles.titleText}> Create a Habit </Text>
+        <Text style={globalStyles.labelText}> Name</Text>
         <TextInput
          style={globalStyles.input}
          
@@ -42,6 +45,7 @@ onSubmit ={(values, actions) => {
         onBlur={props.handleBlur('name')}
         />
          <Text style={globalStyles.errorText}>{props.touched.name && props.errors.name}</Text>
+         <Text style={globalStyles.labelText}> What do you want to do?</Text>
          <TextInput
           multiline minheight={60}
         style={globalStyles.input}
@@ -49,14 +53,16 @@ onSubmit ={(values, actions) => {
         onChangeText={props.handleChange('body')}
         value={props.values.body}
         />
+        <Text style={globalStyles.thirdText}> Motivate Yourself</Text>
         <TextInput
           multiline
         style={globalStyles.input}
-        placeholder="Motivate yourself"
+        placeholder="You can do it"
         onChangeText={props.handleChange('motivational_message')}
         value={props.values.motivational_message}
         />
-<Button title='Submit' color="coral" onPress={props.handleSubmit}/>
+         
+<Button  title='Submit' color="green" onPress={props.handleSubmit}/>
        
        </View> 
     )}
