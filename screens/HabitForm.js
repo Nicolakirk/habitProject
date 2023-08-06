@@ -11,7 +11,7 @@ const reviewSchema = yup.object({
   .min(4),
   body:yup.string(),
   motivational_message: yup.string(),
-  frequency: yup.string().required(),
+ 
 })
 
 export default function HabitForm  ({ submitHandler }) {

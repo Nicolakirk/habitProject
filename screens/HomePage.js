@@ -19,12 +19,14 @@ export default function HomePage ({
       const [owner, setOwner ]= useState("");
       const[keyList, setkeyList]=useState("")
       const[modalOpen, setModalOpen]= useState(false);
+     
 
       useEffect(() => {
+        
      setOwner(values.username)
         fetchHabitsbyUser(owner)
           .then((habits) => {
-         
+         console.log(habits)
             if(habits.length < 1){
 Alert.alert("Welcome to Habits app, start by setting a new habit ", undefined,[
   {text:"Not yet",
@@ -33,7 +35,7 @@ Alert.alert("Welcome to Habits app, start by setting a new habit ", undefined,[
 },{
   text:"+ Habit",
   onPress:()=> setModalOpen(true)
-}
+},
 ])
             }
             else{
@@ -44,6 +46,9 @@ Alert.alert("Welcome to Habits app, start by setting a new habit ", undefined,[
             console.error('Error fetching habits:', error);
           });
       }, [owner]);
+
+   
+
    
       const submitHandler = (habit) => {
        
@@ -95,7 +100,7 @@ Alert.alert("Welcome to Habits app, start by setting a new habit ", undefined,[
 
       const handleDelete = (key) => {
         // Delete the habit from the API
-        console.log("hi")
+    
 
         deleteHabit(key)
       
@@ -152,7 +157,7 @@ Alert.alert("Welcome to Habits app, start by setting a new habit ", undefined,[
       {habitList.map((habit)=>{
         return (
             <TouchableOpacity onPress={()=> navigation.navigate('Habit', 
-            { habit, handleDelete  
+            { habit, handleDelete 
             }) 
              
              
@@ -160,12 +165,20 @@ Alert.alert("Welcome to Habits app, start by setting a new habit ", undefined,[
             <View key={habit.habit_id} style={styles.list} >
             
           <View >
-          <Text  style={styles.text}>Habit -{ habit.name} </Text>
+          <Text  style={styles.text}>{ habit.name} </Text>
+          
+          
 
           {habit.amount_days  === 90 && (
         <MaterialIcons name="done" size={24} color="coral" />
       )}
+<View width={(habit.percentage)/100 *280}
+height={50}
 
+backgroundColor="coral"
+borderRadius= {50}>
+
+</View>
           
           </View>
 </View>
@@ -203,6 +216,7 @@ const styles = StyleSheet.create({
    text:{
     fontSize:18,
     fontWeight:"bold",
+   
       
    },
   
@@ -219,7 +233,7 @@ const styles = StyleSheet.create({
      borderWidth:1,
      borderRadius:20,
      borderStyle: "dashed",
-     flexDirection: 'row',
+    flexDirection:'column',
      
      
   
@@ -243,8 +257,15 @@ const styles = StyleSheet.create({
    modalClose:{
     marginTop:30,
     marginBottom:0,
-   }
-  
+   },
+  circleContainer:{
+width:280,
+height:100,
+
+backgroundColor:"green",
+borderRadius: 50,
+    
+  }
     
   });
   

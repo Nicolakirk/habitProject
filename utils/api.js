@@ -21,7 +21,7 @@ return habitApi.get(`/owner/habits/${owner}`).then((response)=>{
 export const fetchUserbyUsers = (username)=>{
 
     return habitApi.get(`/users/${username}`).then((response)=>{
-    
+    console.log(response.data.users)
             return response.data.users
         })
       
@@ -86,3 +86,11 @@ export const fetchTopics = () =>{
         
         
         };
+
+
+        export const patchPercentageHabit = (habit_id, new_percentage) =>{
+            console.log("patch", new_percentage)
+            return habitApi.patch(`/habit/${habit_id}`, { percentage: new_percentage })
+            
+            
+            };

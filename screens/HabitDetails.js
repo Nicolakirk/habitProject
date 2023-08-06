@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Button, Alert, ScrollView } from 'react-native';
 import { globalStyles } from '../styles/global';
-import { deleteHabit, fetchhabitById, patchHabit } from '../utils/api';
+import { deleteHabit, fetchhabitById, patchHabit, patchPercentageHabit } from '../utils/api';
 import Checkbox from 'expo-checkbox';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function HabitDetails({ navigation, route }) {
   
   const {habit, handleDelete } = route.params;
-  console.log("inhad", habit)
-  // const handleDelete = route.params('handleDelete', () => {});
+  
+ 
 
-  const [percentage, setPercentage] = useState(0);
+  const [newPercentage, setNewPercentage] = useState(0);
   const [addDay, setAddDay] = useState(0);
   const [err, setErr] = useState('');
   const id = habit.habit_id;
@@ -23,7 +23,7 @@ export default function HabitDetails({ navigation, route }) {
   useEffect(() => {
     fetchhabitById(id)
       .then((habits) => {
-        console.log(habits)
+       console.log("new habit", habits[0])
         setHabitsById(habits);
       })
       .catch((error) => {
@@ -34,7 +34,7 @@ export default function HabitDetails({ navigation, route }) {
   useEffect(() => {
     if (habitsById.length > 0) {
       const days = habitsById[0]?.amount_days;
-      setPercentage(Math.round(((days + addDay) / 90) * 100));
+      setNewPercentage(Math.round(((days + addDay) / 90) * 100));
     }
   }, [habitsById]);
 
@@ -79,10 +79,13 @@ export default function HabitDetails({ navigation, route }) {
   }
 
   const handlePlus =() => {
+    const updatedAddDay = addDay + 1
+    const updatedPercentage = Math.round(((habitsById[0]?.amount_days + updatedAddDay) / 90) * 100);
     setAddDay((currentDay) => currentDay + 1);
     setErr('');
-    setPercentage(Math.round(((habitsById[0]?.amount_days + addDay + 1) / 90) * 100));
+    setNewPercentage(Math.round(((habitsById[0]?.amount_days + addDay + 1) / 90) * 100));
     patchHabit(id, 1)
+    patchPercentageHabit(id,updatedPercentage)
       .catch((err) => {
         setAddDay((currentDay) => currentDay - 1);
         console.log('Something went wrong, try again later');
@@ -113,10 +116,14 @@ export default function HabitDetails({ navigation, route }) {
   }
 
     const handleTakeaway =() => {
+      const updatedAddDay = addDay - 1;
+      const updatedPercentage = Math.round(((habitsById[0]?.amount_days + updatedAddDay) / 90) * 100);
+
     setAddDay((currentDay) => currentDay - 1);
     setErr('');
-    setPercentage(Math.round(((habitsById[0]?.amount_days + addDay - 1) / 90) * 100));
+    setNewPercentage(Math.round(((habitsById[0]?.amount_days + addDay - 1) / 90) * 100));
     patchHabit(id, -1)
+    patchPercentageHabit(id,updatedPercentage)
       .catch((err) => {
         setAddDay((currentDay) => currentDay + 1);
         console.log('Something went wrong, try again later');
@@ -153,7 +160,9 @@ export default function HabitDetails({ navigation, route }) {
         <Text style ={globalStyles.titleText}>{message}</Text>
       </View>
       <View style={styles.circleContainer}>
-        <Text style={styles.percentageText}>{percentage}%</Text>
+        <Text style={styles.percentageText}>{newPercentage}%</Text>
+        <Text>{habitsById[0].percentage}</Text>
+        
       </View>
 
       <View style={styles.addHabitContainer}>

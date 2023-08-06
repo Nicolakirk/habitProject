@@ -31,7 +31,7 @@ marginTop:5,
 
     },
     errorText:{
-        color:'Green',
+        color:'green',
         fontWeight:'bold',
         marginBottom:10,
         marginTop:6,

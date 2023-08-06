@@ -29,26 +29,36 @@ const handlePassword =()=>{
     username: newUserName,
     name:newName
   }
-  fetchUserbyUsers(newUserName).then((user)=>{
-if ( !user){
-  setNoUserExists(true)
-} else{
-  Alert.alert("user already exists")
-}
+  console.log(inputBody)
+  fetchUserbyUsers(newUserName)
+  .then((user) => {
+    if (user.length === 0) {
+      // User does not exist
+      setNoUserExists(true);
+      // Proceed to account creation
+      if (newPassword === confirmPassword) {
+        save(newUserName, newPassword).then(() => {
+          console.log('account created');
+          handleCreateAccount(newUserName);
+          postUser(inputBody)
+            .then(() => {
+              console.log('new user added');
+            })
+            .catch((err) => {
+              console.log('Error adding user:', err);
+            });
+        });
+      } else {
+        Alert.alert('Passwords do not match');
+      }
+    } else {
+      // User already exists
+      Alert.alert('User already exists');
+    }
   })
-
-  if (newPassword === confirmPassword  && noUserExists){
-    save(newUserName,newPassword).then(()=>{
-    console.log("account created")
-    })
-    handleCreateAccount(newUserName)
-postUser(inputBody).then(()=>{
-console.log("new user added")
-})
-.catch((err) => {
-  console.log('Error adding user:', err);
-})
-}
+  .catch((error) => {
+    console.log('Error fetching user:', error);
+  });
 };
     
 

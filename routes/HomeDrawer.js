@@ -40,7 +40,7 @@ const HomeDrawer = () => {
           name="Habit Stack "
           component={HomeStack}
           options={{
-            drawerActiveBackgroundColor:"yellow",
+           
           }}
         />
         <Drawer.Screen
@@ -48,7 +48,7 @@ const HomeDrawer = () => {
           component={AboutStack}
           options={{
             
-            drawerActiveBackgroundColor:"yellow", // Set the title for the screen
+             // Set the title for the screen
           }}
         />
       </Drawer.Navigator>
