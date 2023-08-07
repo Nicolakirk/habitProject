@@ -23,7 +23,7 @@ export default function HabitDetails({ navigation, route }) {
   useEffect(() => {
     fetchhabitById(id)
       .then((habits) => {
-       console.log("new habit", habits[0])
+      
         setHabitsById(habits);
       })
       .catch((error) => {

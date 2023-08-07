@@ -9,9 +9,7 @@ import HabitForm from './HabitForm';
 export default function HomePage ({ 
     navigation,  route, userLoggedIn }) {
       const { values } = route.params;
-// const newUser = navigation.getParam("values")
 
-    //  const updatedUser= values.username
      console.log("in",values)
         const [frequencyList, setFrequency] = useState('Every day');
        

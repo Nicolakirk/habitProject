@@ -22,8 +22,7 @@ export default function LoginScreen({ navigation, values, route }) {
  
 
 
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
+ 
   const[modalOpen, setModalOpen]= useState(false);
   const[isAUser, setIsAUser] =useState(false)
 
@@ -45,7 +44,7 @@ console.log("use",username)
   
     getValueFor(username)
    .then((result)=>{
-    console.log("result",result)
+   
     if(result === values.password ) {
     
       navigation.navigate('Home', { values });

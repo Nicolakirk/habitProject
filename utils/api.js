@@ -72,16 +72,16 @@ export const fetchTopics = () =>{
 
 
     export const fetchhabitById= (habit_id)=>{
-        console.log(habit_id)
+       
         return habitApi.get(`/habit/${habit_id}`).then((response)=>{
-  console.log(response.data.habits)
+ 
             return response.data.habits
         })
     }
 
 
     export const patchHabit = (habit_id, days) =>{
-        console.log("patch", days)
+       
         return habitApi.patch(`/habits/${habit_id}`, { amount_days: days })
         
         
@@ -89,7 +89,7 @@ export const fetchTopics = () =>{
 
 
         export const patchPercentageHabit = (habit_id, new_percentage) =>{
-            console.log("patch", new_percentage)
+            
             return habitApi.patch(`/habit/${habit_id}`, { percentage: new_percentage })
             
             

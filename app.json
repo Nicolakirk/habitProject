@@ -20,7 +20,6 @@
         "usesNonExemptEncryption": false
       }
     },
-    
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -29,6 +28,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0f2844b9-a08f-4008-a53e-978c868959d3"
+      }
     }
   }
 }

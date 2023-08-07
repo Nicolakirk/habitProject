@@ -29,7 +29,7 @@ const handlePassword =()=>{
     username: newUserName,
     name:newName
   }
-  console.log(inputBody)
+
   fetchUserbyUsers(newUserName)
   .then((user) => {
     if (user.length === 0) {
